@@ -1,13 +1,15 @@
 package repository;
 
+import builder.NoticeBuilder;
+import interfaces.NoticeRepository;
+import models.Notice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
 import java.util.ArrayList;
 
-import interfaces.NoticeRepository;
-import models.Notice;
+
 
 public class NoticeConnection implements NoticeRepository {
 
@@ -183,7 +185,7 @@ public class NoticeConnection implements NoticeRepository {
 		String createdByName = rs.getString("first_name") + " " + rs.getString("last_name");
 		String deadlineDate = rs.getString("deadline_date");
 
-		return new Notice.NoticeBuilder(title, message)
+		return new NoticeBuilder(title, message)
 				.noticeId(noticeId)
 				.category(category)
 				.priority(priority)

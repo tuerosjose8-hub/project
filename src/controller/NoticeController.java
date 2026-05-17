@@ -1,9 +1,12 @@
 package controller;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 
+import builder.NoticeBuilder;
 import interfaces.NoticeRepository;
 import models.Notice;
+
 public class NoticeController {
 	
 	private NoticeRepository noticeRepository;
@@ -20,8 +23,8 @@ public class NoticeController {
 
 		monthDeadlines = new HashMap<String, Integer>();
 		monthDeadlines.put("One month", 1);
-		
 	}
+	
 	public boolean createNotice(String title, String message, String category,
 			String priority, String year, String deadlineChoice, int createdBy) {
 
@@ -51,7 +54,7 @@ public class NoticeController {
 
 		String deadlineDate = getDeadlineDate(deadlineChoice);
 
-		Notice notice = new Notice.NoticeBuilder(title.trim(), message.trim())
+		Notice notice = new NoticeBuilder(title.trim(), message.trim())
 				.category(category)
 				.priority(priority)
 				.yearLevel(year)
@@ -79,6 +82,4 @@ public class NoticeController {
 
 		return null;
 	}
-
-
 }

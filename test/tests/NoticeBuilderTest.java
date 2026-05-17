@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import builder.NoticeBuilder;
 import models.Notice;
 
 public class NoticeBuilderTest {
@@ -11,7 +12,7 @@ public class NoticeBuilderTest {
 	@Test
 	public void testNoticeBuilderCreatesNotice() {
 		
-		Notice notice = new Notice.NoticeBuilder("Exam", "is next week")
+		Notice notice = new NoticeBuilder("Exam", "is next week")
 				.category("Academic")
 				.priority("High")
 				.yearLevel("Junior")
