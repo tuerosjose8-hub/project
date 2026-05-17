@@ -189,7 +189,7 @@ public class LoginPage   {
 		showLoginSuccess();
 
 		frame.dispose();
-		DashboardFactory.openDashboard(user);
+		new DashboardFactory().openDashboard(user);
 	}
 	public void showLoginError() {
 		messageLabel.setForeground(Color.RED);
