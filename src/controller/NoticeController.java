@@ -2,7 +2,6 @@ package controller;
 
 import java.time.LocalDate;
 import enums.DeadlineOption;
-import java.util.HashMap;
 
 import builder.NoticeBuilder;
 import interfaces.NoticeRepository;
@@ -11,19 +10,10 @@ import models.Notice;
 public class NoticeController {
 	
 	private NoticeRepository noticeRepository;
-	private HashMap<String, Integer> weekDeadlines;
-	private HashMap<String, Integer> monthDeadlines;
+
 	
 	public NoticeController(NoticeRepository noticeRepository) {
 		this.noticeRepository = noticeRepository;
-		
-		weekDeadlines = new HashMap<String, Integer>();
-		weekDeadlines.put("Next week", 1);
-		weekDeadlines.put("Two weeks", 2);
-		weekDeadlines.put("Three weeks", 3);
-
-		monthDeadlines = new HashMap<String, Integer>();
-		monthDeadlines.put("One month", 1);
 	}
 	
 	public boolean createNotice(String title, String message, String category,
