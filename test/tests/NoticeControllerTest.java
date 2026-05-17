@@ -3,6 +3,7 @@ package tests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,6 +25,59 @@ public class NoticeControllerTest {
 		String actualDate = controller.getDeadlineDate("Next week");
 
 		assertEquals(expectedDate, actualDate);
+	}
+	
+	@Test
+	public void testGetDeadlineDateTwoWeeks() {
+		FakeNoticeRepository fakeRepository = new FakeNoticeRepository();
+		NoticeController controller = new NoticeController(fakeRepository);
+
+		String expectedDate = LocalDate.now().plusWeeks(2).toString();
+		String actualDate = controller.getDeadlineDate("Two weeks");
+
+		assertEquals(expectedDate, actualDate);
+	}
+
+	@Test
+	public void testGetDeadlineDateThreeWeeks() {
+		FakeNoticeRepository fakeRepository = new FakeNoticeRepository();
+		NoticeController controller = new NoticeController(fakeRepository);
+
+		String expectedDate = LocalDate.now().plusWeeks(3).toString();
+		String actualDate = controller.getDeadlineDate("Three weeks");
+
+		assertEquals(expectedDate, actualDate);
+	}
+
+	@Test
+	public void testGetDeadlineDateOneMonth() {
+		FakeNoticeRepository fakeRepository = new FakeNoticeRepository();
+		NoticeController controller = new NoticeController(fakeRepository);
+
+		String expectedDate = LocalDate.now().plusMonths(1).toString();
+		String actualDate = controller.getDeadlineDate("One month");
+
+		assertEquals(expectedDate, actualDate);
+	}
+
+	@Test
+	public void testGetDeadlineDateNoDeadlineReturnsNull() {
+		FakeNoticeRepository fakeRepository = new FakeNoticeRepository();
+		NoticeController controller = new NoticeController(fakeRepository);
+
+		String actualDate = controller.getDeadlineDate("No deadline");
+
+		assertNull(actualDate);
+	}
+
+	@Test
+	public void testGetDeadlineDateInvalidChoiceReturnsNull() {
+		FakeNoticeRepository fakeRepository = new FakeNoticeRepository();
+		NoticeController controller = new NoticeController(fakeRepository);
+
+		String actualDate = controller.getDeadlineDate("Invalid deadline");
+
+		assertNull(actualDate);
 	}
 
 	@Test

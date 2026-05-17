@@ -14,6 +14,7 @@ import enums.Category;
 import controller.NoticeController;
 import enums.Priority;
 import enums.YearLevel;
+import enums.DeadlineOption;
 
 public class CreatePage {
 	
@@ -48,8 +49,7 @@ public class CreatePage {
 	};
 	JComboBox<String> yearBox = new JComboBox <String>(years);
 	
-	String[] deadlines = {"No deadline", "Next week", "Two weeks", "Three weeks", "One month"};
-	JComboBox<String> deadlineBox = new JComboBox<String>(deadlines);
+	JComboBox<String> deadlineBox = new JComboBox<String>(DeadlineOption.getLabels());
 	    
 	JButton save = new JButton("Save Notice");
 	JButton cancel = new JButton("Cancel");

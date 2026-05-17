@@ -1,17 +1,21 @@
 package repository;
 
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.Properties;
 
 public class DatabaseConnection {
 
-	private static final String URL = "jdbc:mariadb://localhost:3306/users";
+	public static Connection getConnection() throws Exception {
 
-	private static final String USER = "tuerosj"; // change to your local username
-	private static final String PASSWORD = "Josefe12"; // change to your local password
+		Properties props = new Properties();
+		props.load(new FileInputStream("db.properties"));
 
-	public static Connection getConnection() throws SQLException {
-		return DriverManager.getConnection(URL, USER, PASSWORD);
+		String url = props.getProperty("db.url");
+		String user = props.getProperty("db.user");
+		String password = props.getProperty("db.password");
+
+		return DriverManager.getConnection(url, user, password);
 	}
 }

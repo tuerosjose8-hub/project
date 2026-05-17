@@ -15,10 +15,11 @@ public class NoticeConnection implements NoticeRepository {
 
 	private static final String SELECT_NOTICE =
 			"SELECT n.notice_id, n.title, n.message, n.category, n.priority, "
-			+ "n.year_level, n.created_by, n.deadline_date, u.first_name, u.last_name "
+			+ "n.year_level, n.created_by, n.deadline_date, n.created_at AS created_at, "
+			+ "u.first_name, u.last_name "
 			+ "FROM notices n "
 			+ "JOIN usersandpasswords u ON n.created_by = u.user_id ";
-
+	
 	public boolean addNotice(Notice notice) {
 
 		String query = "INSERT INTO notices "
@@ -184,6 +185,7 @@ public class NoticeConnection implements NoticeRepository {
 		int createdBy = rs.getInt("created_by");
 		String createdByName = rs.getString("first_name") + " " + rs.getString("last_name");
 		String deadlineDate = rs.getString("deadline_date");
+		String createdAt = rs.getString("created_at");
 
 		return new NoticeBuilder(title, message)
 				.noticeId(noticeId)
@@ -192,6 +194,7 @@ public class NoticeConnection implements NoticeRepository {
 				.yearLevel(yearLevel)
 				.createdBy(createdBy)
 				.createdByName(createdByName)
+				.createdAt(createdAt)
 				.deadlineDate(deadlineDate)
 				.build();
 	}

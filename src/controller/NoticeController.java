@@ -1,6 +1,7 @@
 package controller;
 
 import java.time.LocalDate;
+import enums.DeadlineOption;
 import java.util.HashMap;
 
 import builder.NoticeBuilder;
@@ -67,19 +68,12 @@ public class NoticeController {
 	
 	public String getDeadlineDate(String deadlineChoice) {
 
-		LocalDate today = LocalDate.now();
+		DeadlineOption option = DeadlineOption.fromLabel(deadlineChoice);
 
-		Integer weeks = weekDeadlines.get(deadlineChoice);
-		Integer months = monthDeadlines.get(deadlineChoice);
-
-		if(weeks != null) {
-			return today.plusWeeks(weeks).toString();
+		if(option == DeadlineOption.NO_DEADLINE) {
+			return null;
 		}
 
-		if(months != null) {
-			return today.plusMonths(months).toString();
-		}
-
-		return null;
+		return LocalDate.now().plusDays(option.getDays()).toString();
 	}
 }
