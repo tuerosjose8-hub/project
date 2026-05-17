@@ -33,9 +33,25 @@ public class NoticeController {
 		    return false;
 		}
 
+		if(category == null || category.trim().isEmpty()) {
+			return false;
+		}
+
+		if(priority == null || priority.trim().isEmpty()) {
+			return false;
+		}
+
+		if(year == null || year.trim().isEmpty()) {
+			return false;
+		}
+
+		if(createdBy <= 0) {
+			return false;
+		}
+
 		String deadlineDate = getDeadlineDate(deadlineChoice);
 
-		Notice notice = new Notice.NoticeBuilder(title, message)
+		Notice notice = new Notice.NoticeBuilder(title.trim(), message.trim())
 				.category(category)
 				.priority(priority)
 				.yearLevel(year)
@@ -45,6 +61,7 @@ public class NoticeController {
 
 		return noticeRepository.addNotice(notice);
 	}
+	
 	public String getDeadlineDate(String deadlineChoice) {
 
 		LocalDate today = LocalDate.now();

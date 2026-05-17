@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
+import enums.Category;
 import controller.NoticeController;
 import enums.Priority;
 import enums.YearLevel;
@@ -21,7 +21,14 @@ public class CreatePage {
 	JTextField titleField = new JTextField();
 	JTextArea messageArea = new JTextArea();
 	
-	String[] categories = {"Academic", "Internship Opportunities", "CS Club", "Events", "Deadlines"};
+	String[] categories = {
+			Category.GENERAL.getDatabaseValue(),
+			Category.ACADEMIC.getDatabaseValue(),
+			Category.INTERNSHIP.getDatabaseValue(),
+			Category.CS_CLUB.getDatabaseValue(),
+			Category.EVENTS.getDatabaseValue(),
+			Category.DEADLINES.getDatabaseValue()
+	};
 	JComboBox<String> categoryBox = new JComboBox <String>(categories);
 	
 	String[] priorities = {

@@ -60,6 +60,7 @@ public class NoticeConnection implements NoticeRepository {
 
 	public ArrayList<Notice> getRecent(int limit) {
 		String query = SELECT_NOTICE
+				+ "WHERE n.created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) "
 				+ "ORDER BY n.created_at DESC "
 				+ "LIMIT ?";
 
@@ -96,7 +97,8 @@ public class NoticeConnection implements NoticeRepository {
 
 	public ArrayList<Notice> getStudentRecent(int limit, String studentYear) {
 		String query = SELECT_NOTICE
-				+ "WHERE n.year_level = ? OR n.year_level = 'All' "
+				+ "WHERE n.created_at >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) "
+				+ "AND (n.year_level = ? OR n.year_level = 'All') "
 				+ "ORDER BY n.created_at DESC "
 				+ "LIMIT ?";
 

@@ -35,7 +35,10 @@ CREATE TABLE notices (
 
     CONSTRAINT fk_notice_creator
         FOREIGN KEY (created_by) REFERENCES usersandpasswords(user_id),
-
+	
+	CONSTRAINT chk_notice_category CHECK (
+    category IN ('General', 'Academic', 'Internship Opportunities', 'CS Club', 'Events', 'Deadlines')
+),
     CONSTRAINT chk_notice_priority CHECK (priority IN ('High', 'Medium', 'Low')),
     CONSTRAINT chk_notice_year CHECK (
         year_level IN ('Freshman', 'Sophomore', 'Junior', 'Senior', 'Graduate', 'All')
@@ -53,4 +56,4 @@ INSERT INTO notices
 VALUES
 ('Welcome to the CS Notice Board', 'This board shows official Computer Science department notices.', 'General', 'Medium', 'All', 1, NULL),
 ('Advising Reminder', 'Juniors should meet with their advisor before registration.', 'Academic', 'High', 'Junior', 1, DATE_ADD(CURDATE(), INTERVAL 2 WEEK)),
-('Department Event', 'There will be a department event next week.', 'Event', 'Low', 'All', 1, DATE_ADD(CURDATE(), INTERVAL 1 WEEK));
+('Department Event', 'There will be a department event next week.', 'Events', 'Low', 'All', 1, DATE_ADD(CURDATE(), INTERVAL 1 WEEK));

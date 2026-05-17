@@ -16,36 +16,30 @@ public class UserConnection implements UserRepository{
 		String query = 	"SELECT user_id, username, role, first_name, last_name, year "
 						+"FROM usersandpasswords "
 						+"WHERE username = ? AND password = ?";		
-		try {
-			
-			Connection conn = DatabaseConnection.getConnection();
-			
-			PreparedStatement stmt = conn.prepareStatement(query);
+		try(Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement stmt = conn.prepareStatement(query)) {
+
 			stmt.setString(1, username);
 			stmt.setString(2, password);
-			
-			ResultSet rs = stmt.executeQuery();
-			
-			if(rs.next()) {
-				int userId = rs.getInt("user_id");
-				String usernamedb = rs.getString("username");
-				String role = rs.getString("role");
-				String firstName = rs.getString("first_name");
-				String lastName = rs.getString("last_name");
-				String year = rs.getString("year");
-				
-				User user = new User(userId, usernamedb, role, firstName, lastName, year);;
 
-				
-				return user;	// we return user with all the data
+			try(ResultSet rs = stmt.executeQuery()) {
+
+				if(rs.next()) {
+					int userId = rs.getInt("user_id");
+					String usernamedb = rs.getString("username");
+					String role = rs.getString("role");
+					String firstName = rs.getString("first_name");
+					String lastName = rs.getString("last_name");
+					String year = rs.getString("year");
+
+					return new User(userId, usernamedb, role, firstName, lastName, year);
+				}
 			}
-
-			
-		} catch (Exception e) {
+		}
+		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
-	
 	}
 }
