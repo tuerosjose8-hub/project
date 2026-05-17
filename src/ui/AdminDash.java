@@ -92,7 +92,12 @@ public class AdminDash {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new CreatePage(adminId);
+				new CreatePage(adminId, new Runnable() {
+					@Override
+					public void run() {
+						refreshDashboard();
+					}
+				});
 			}
 			
 		});
@@ -252,4 +257,19 @@ public class AdminDash {
 
 		return button;
 	}
+	
+	public void refreshDashboard() {
+		frame.getContentPane().removeAll();
+
+		Header();
+		createNotice();
+		recentNotices();
+		allnotices();
+		importantNotices();
+		upcomingEvents();
+
+		frame.revalidate();
+		frame.repaint();
+	}
+	
 }

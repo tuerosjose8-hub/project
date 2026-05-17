@@ -25,8 +25,12 @@ public class NoticeController {
 	public boolean createNotice(String title, String message, String category,
 			String priority, String year, String deadlineChoice, int createdBy) {
 
-		if(title.equals("") || message.equals("")) {
-			return false;
+		if(title == null || title.trim().isEmpty()) {
+		    return false;
+		}
+
+		if(message == null || message.trim().isEmpty()) {
+		    return false;
 		}
 
 		String deadlineDate = getDeadlineDate(deadlineChoice);

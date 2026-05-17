@@ -20,6 +20,12 @@ public class NoticeFilterFactory {
 		strategies.put("Upcoming Events", new UpcomingNoticeStrategy());
 	}
 	public NoticeFilterStrategy getStrategy(String pageTitle) {
-		return strategies.getOrDefault(pageTitle, new AllNoticeStrategy());
-	} // ordefault 
+		NoticeFilterStrategy strategy = strategies.get(pageTitle);
+
+		if(strategy == null) {
+			return strategies.get("All Notices");
+		}
+
+		return strategy;
+	}
 }

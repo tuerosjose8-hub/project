@@ -5,12 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
+
 	private static final String URL = "jdbc:mariadb://localhost:3306/users";
 
-	// Change these values to match your local MariaDB username and password.
-	
-	private static final String USER = "tuerosj";
-	private static final String PASSWORD = "Josefe12";
+	private static final String USER = "root"; // change to your local username
+	private static final String PASSWORD = ""; // change to your local password
 
 	public static Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(URL, USER, PASSWORD);

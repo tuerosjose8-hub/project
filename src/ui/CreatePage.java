@@ -50,12 +50,16 @@ public class CreatePage {
 	JLabel message = new JLabel();
 	
 	int createdBy;
+	private Runnable onNoticeSaved;
+
 	NoticeController noticeController = new NoticeController(new repository.NoticeConnection());
 	
-	public CreatePage(int createdBy) {
+	public CreatePage(int createdBy, Runnable onNoticeSaved) {
 		
-        this.createdBy = createdBy;
-        frame.setSize(600,700);
+		this.createdBy = createdBy;
+		this.onNoticeSaved = onNoticeSaved;
+        
+		frame.setSize(600,700);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setLayout(null);
@@ -144,6 +148,10 @@ public class CreatePage {
 
 				showSuccess("Notice saved to database");
 				clearForm();
+
+				if(onNoticeSaved != null) {
+					onNoticeSaved.run();
+				}
 		
 				
 			}

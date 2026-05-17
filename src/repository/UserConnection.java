@@ -9,7 +9,7 @@ import models.User;
 
 
 
-public class UserD implements UserRepository{
+public class UserConnection implements UserRepository{
 	// check login with database using queries ? is placeholder
 	public User checkLogin(String username, String password) {
 
@@ -35,15 +35,11 @@ public class UserD implements UserRepository{
 				String year = rs.getString("year");
 				
 				User user = new User(userId, usernamedb, role, firstName, lastName, year);;
-				rs.close();
-				stmt.close();
-				conn.close();
+
 				
 				return user;	// we return user with all the data
 			}
-			rs.close();
-			stmt.close();
-			conn.close();
+
 			
 		} catch (Exception e) {
 			e.printStackTrace();

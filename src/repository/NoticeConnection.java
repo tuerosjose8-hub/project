@@ -37,8 +37,6 @@ import models.Notice;
 			
 			stmt.executeUpdate();
 			
-			stmt.close();
-			conn.close();
 			
 			return true;
 		}
@@ -180,9 +178,6 @@ private ArrayList<Notice> getNoticeList(String query, int limit){
 				notices.add(notice);
 			}
 			
-			rs.close();
-			stmt.close();
-			conn.close();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -229,9 +224,6 @@ private ArrayList<Notice> getNoticeList(String query, int limit){
 				notices.add(notice);
 			}
 
-			rs.close();
-			stmt.close();
-			conn.close();
 
 		} catch(Exception e) {
 			e.printStackTrace();

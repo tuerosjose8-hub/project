@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import factory.DashboardFactory;
 import interfaces.UserRepository;
 import models.User;
-import repository.UserD;
+import repository.UserConnection;
 
 
 
@@ -44,7 +44,7 @@ public class LoginPage   {
 	JLabel userPasswordLabel = new JLabel("Password:");
 	JLabel messageLabel = new JLabel();
 	
-	UserRepository userRepository = new repository.UserD();
+	UserRepository userRepository = new repository.UserConnection();
 	
 	public LoginPage(){
 		ImageIcon appIcon = new ImageIcon(getClass().getResource("/project/newpaltzsmall.png"));
