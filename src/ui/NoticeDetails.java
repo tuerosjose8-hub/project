@@ -63,7 +63,6 @@ JFrame frame = new JFrame("Notice Details");
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				frame.dispose();
 			}
 			

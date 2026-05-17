@@ -54,6 +54,8 @@ VALUES
 INSERT INTO notices
 (title, message, category, priority, year_level, created_by, deadline_date)
 VALUES
+-- NOTE: passwords should be hashed in production (e.g. BCrypt)
 ('Welcome to the CS Notice Board', 'This board shows official Computer Science department notices.', 'General', 'Medium', 'All', 1, NULL),
 ('Advising Reminder', 'Juniors should meet with their advisor before registration.', 'Academic', 'High', 'Junior', 1, DATE_ADD(CURDATE(), INTERVAL 2 WEEK)),
 ('Department Event', 'There will be a department event next week.', 'Events', 'Low', 'All', 1, DATE_ADD(CURDATE(), INTERVAL 1 WEEK));
+

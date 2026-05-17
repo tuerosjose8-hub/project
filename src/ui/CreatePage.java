@@ -127,7 +127,6 @@ public class CreatePage {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				String noticeTitle = titleField.getText();
 				String noticeMessage = messageArea.getText();
 				String category = String.valueOf(categoryBox.getSelectedItem());
